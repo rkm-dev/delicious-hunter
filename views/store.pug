@@ -1,0 +1,37 @@
+extends layout
+
+include mixins/_reviewForm
+include mixins/_review
+
+block content
+	//-pre= h.dump(store)
+	.single
+		.single__hero
+			img.single__image(src=`/uploads/${store.photo || 'store.png'}`)
+			h2.title.title--single
+				a(href=`/stores/${store.slug}`) #{store.name}
+
+	.single__details.inner
+		//-pre= h.dump(store)
+		img.single__map(src=h.staticMap(store.location.coordinates))
+
+		p.single__location= store.location.address
+
+		if store.tags
+			ul.tags
+				each tag in store.tags
+					li.tag
+						a.tag__link(href=`/tags/${tag}`)
+							span.tag__text ##{tag}
+
+		if user
+			+reviewForm(store)
+
+		if store.reviews
+			.reviews
+				hr
+				div(style="margin-bottom: -30px;background: linear-gradient(0, #48ded4 0%, #a026bf 20%, #e82c75 60%, #FFC40E 85%, #48ded4 95%);background-attachment: fixed;")
+					h2(style="background: white;border-bottom: 10px solid rgba(0, 0, 0, 0.2);background-clip: padding-box;") Reviews 
+				each r in store.reviews
+					.review
+						+review(r)

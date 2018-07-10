@@ -1,0 +1,12 @@
+extends layout
+
+block content
+	.inner
+		h2 Reset Your Password
+		form.form(method="POST")
+			label(for="password") Password
+			input(type="password" name="password" id="password" required)
+			label(for="confirm-password") Confirm Password
+			input(type="password" name="confirm-password" id="confirm-password" required)
+			hr
+			input.button(type="submit" value="Reset Password ➙")

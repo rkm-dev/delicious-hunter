@@ -1,0 +1,16 @@
+extends layout
+
+block content
+	.inner
+		h2 Sign Up
+		form.form(action="/register" method="POST")
+			label(for="name") Name
+			input(type="text" name="name" id="name" required autofocus)
+			label(for="email") Email Address
+			input(type="email" name="email" id="email" required)
+			label(for="password") Password
+			input(type="password" name="password" id="password" required)
+			label(for="confirm-password") Confirm Password
+			input(type="password" name="confirm-password" id="confirm-password" required)
+			hr
+			input.button(type="submit" value="Sign Up ➙")
